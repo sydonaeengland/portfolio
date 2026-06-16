@@ -31,6 +31,23 @@
   --max-w:      1240px;
   --gutter:     60px;
   --section-py: 80px;
+
+  /* ── Sub-page / project detail design tokens ── */
+  --color-bg:           #0C0C0E;
+  --color-card:         #111116;
+  --color-card-alt:     #0F0E14;
+  --color-border:       rgba(255,255,255,0.08);
+  --color-border-light: rgba(255,255,255,0.13);
+  --color-text:         #F8F7F4;
+  --color-muted:        rgba(248,247,244,0.42);
+  --color-muted-light:  rgba(248,247,244,0.65);
+  --color-accent:       #B8AAFF;
+  --font-heading:       'Plus Jakarta Sans', sans-serif;
+  --font-mono:          'Manrope', ui-monospace, monospace;
+  --radius-sm:          6px;
+  --radius-md:          12px;
+  --radius-lg:          20px;
+  --radius-full:        9999px;
 }
 
 /* ============================================================

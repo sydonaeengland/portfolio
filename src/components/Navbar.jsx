@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const NAV_LINKS = [
@@ -17,12 +18,17 @@ function scrollTo(href) {
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen]         = useState(false);
+  const navigate  = useNavigate();
+  const location  = useLocation();
+  const isHome    = location.pathname === '/';
 
   useEffect(() => {
+    if (!isHome) { setScrolled(true); return; }
     const handler = () => setScrolled(window.scrollY > 40);
+    handler();
     window.addEventListener('scroll', handler, { passive: true });
     return () => window.removeEventListener('scroll', handler);
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -31,7 +37,20 @@ export default function Navbar() {
 
   const handleNavClick = (href) => {
     setOpen(false);
-    setTimeout(() => scrollTo(href), open ? 320 : 0);
+    if (isHome) {
+      setTimeout(() => scrollTo(href), open ? 320 : 0);
+    } else {
+      navigate('/');
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+    }
   };
 
   return (
@@ -41,7 +60,7 @@ export default function Navbar() {
         <a
           className="navbar-logo"
           href="#"
-          onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+          onClick={handleLogoClick}
         >
           Sydonae<span>.</span>
         </a>
@@ -50,7 +69,7 @@ export default function Navbar() {
         <ul className="navbar-links">
           {NAV_LINKS.map(({ label, href }) => (
             <li key={href}>
-              <a href={href} onClick={e => { e.preventDefault(); scrollTo(href); }}>
+              <a href={href} onClick={e => { e.preventDefault(); handleNavClick(href); }}>
                 {label}
               </a>
             </li>

@@ -3,10 +3,11 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import { PROJECTS } from '../data/projects';
 
 const BADGE_COLORS = {
-  Capstone: { bg: 'rgba(0,229,180,0.1)',    border: 'rgba(0,229,180,0.3)',    text: '#00E5B4' },
-  Hackathon:{ bg: 'rgba(129,140,248,0.1)',  border: 'rgba(129,140,248,0.3)', text: '#818CF8' },
-  Academic: { bg: 'rgba(251,146,60,0.1)',   border: 'rgba(251,146,60,0.3)',  text: '#FB923C' },
-  Design:   { bg: 'rgba(201,168,76,0.1)',   border: 'rgba(201,168,76,0.3)',  text: '#C9A84C' },
+  Capstone:        { bg: 'rgba(0,229,180,0.1)',    border: 'rgba(0,229,180,0.3)',    text: '#00E5B4' },
+  Hackathon:       { bg: 'rgba(129,140,248,0.1)',  border: 'rgba(129,140,248,0.3)', text: '#818CF8' },
+  Academic:        { bg: 'rgba(251,146,60,0.1)',   border: 'rgba(251,146,60,0.3)',  text: '#FB923C' },
+  Design:          { bg: 'rgba(201,168,76,0.1)',   border: 'rgba(201,168,76,0.3)',  text: '#C9A84C' },
+  'In Development':{ bg: 'rgba(20,184,166,0.1)',   border: 'rgba(20,184,166,0.3)', text: '#14B8A6' },
 };
 
 export default function ProjectDetailPage() {
@@ -14,7 +15,6 @@ export default function ProjectDetailPage() {
   const navigate = useNavigate();
   const project = PROJECTS.find(p => p.id === id);
 
-  useEffect(() => { window.scrollTo(0, 0); }, [id]);
 
   if (!project) {
     return (

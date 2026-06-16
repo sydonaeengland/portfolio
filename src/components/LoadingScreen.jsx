@@ -6,7 +6,7 @@ export default function LoadingScreen({ onComplete }) {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(false), 3000);
+    const t = setTimeout(() => setVisible(false), 1800);
     return () => clearTimeout(t);
   }, []);
 
@@ -16,7 +16,7 @@ export default function LoadingScreen({ onComplete }) {
         <motion.div
           className="loading-screen"
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          transition={{ duration: 0.35, ease: 'easeInOut' }}
         >
           <motion.div
             className="loading-photo-wrap"

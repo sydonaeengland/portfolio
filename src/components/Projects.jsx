@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -109,6 +110,7 @@ const PROJECTS = [
 ];
 
 function ProjectDrawer({ project, onClose }) {
+  const navigate = useNavigate();
   const [activeImg, setActiveImg] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const n = project.screenshots.length;
@@ -287,6 +289,26 @@ function ProjectDrawer({ project, onClose }) {
                 </span>
               ))}
             </div>
+
+            {project.caseStudyLink && (
+              <button
+                onClick={() => { onClose(); navigate(project.caseStudyLink); }}
+                style={{
+                  marginTop: '24px',
+                  display: 'inline-flex', alignItems: 'center', gap: '8px',
+                  padding: '12px 22px', borderRadius: '100px',
+                  background: project.color, color: '#000',
+                  fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.82rem',
+                  border: 'none', cursor: 'pointer',
+                  transition: 'opacity 0.2s',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
+                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+              >
+                Read full case study
+                <ArrowRight size={14} />
+              </button>
+            )}
           </div>
 
         </div>

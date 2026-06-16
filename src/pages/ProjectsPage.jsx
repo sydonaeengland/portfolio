@@ -3,10 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import { PROJECTS } from '../data/projects';
 
 const BADGE_COLORS = {
-  Capstone: { bg: 'rgba(0,229,180,0.08)',    border: 'rgba(0,229,180,0.25)',    text: '#00E5B4' },
-  Hackathon:{ bg: 'rgba(129,140,248,0.08)',  border: 'rgba(129,140,248,0.25)', text: '#818CF8' },
-  Academic: { bg: 'rgba(251,146,60,0.08)',   border: 'rgba(251,146,60,0.25)',  text: '#FB923C' },
-  Design:   { bg: 'rgba(201,168,76,0.08)',   border: 'rgba(201,168,76,0.25)',  text: '#C9A84C' },
+  Capstone:        { bg: 'rgba(0,229,180,0.08)',    border: 'rgba(0,229,180,0.25)',    text: '#00E5B4' },
+  Hackathon:       { bg: 'rgba(129,140,248,0.08)',  border: 'rgba(129,140,248,0.25)', text: '#818CF8' },
+  Academic:        { bg: 'rgba(251,146,60,0.08)',   border: 'rgba(251,146,60,0.25)',  text: '#FB923C' },
+  Design:          { bg: 'rgba(201,168,76,0.08)',   border: 'rgba(201,168,76,0.25)',  text: '#C9A84C' },
+  'In Development':{ bg: 'rgba(20,184,166,0.08)',   border: 'rgba(20,184,166,0.25)', text: '#14B8A6' },
 };
 
 function HeroCard({ project }) {
