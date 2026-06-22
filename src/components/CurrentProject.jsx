@@ -9,7 +9,7 @@ const PHASES = [
   { label: 'Compliance',     done: false, active: false },
 ];
 
-const STACK = ['Node.js', 'React', 'MySQL', 'Claude API', 'Railway', 'Vercel'];
+const STACK = ['Node.js', 'React', 'MySQL', 'Railway', 'Vercel'];
 
 export default function CurrentProject() {
   const navigate = useNavigate();
@@ -93,12 +93,7 @@ export default function CurrentProject() {
           </div>
 
           {/* Two-col body */}
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 280px',
-            gap: '52px',
-            alignItems: 'start',
-          }}>
+          <div className="current-project-grid">
             {/* Left — description + phases */}
             <div>
               <p style={{

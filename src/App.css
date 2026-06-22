@@ -2379,6 +2379,21 @@ button { font-family: var(--font-body); cursor: pointer; }
 }
 
 /* ── mobile ── */
+/* current project section */
+.current-project-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 52px;
+  align-items: start;
+}
+
+@media (max-width: 768px) {
+  .current-project-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
 @media (max-width: 600px) {
   :root {
     --section-py: 48px;
