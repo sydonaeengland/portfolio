@@ -25,7 +25,6 @@ function IconLinkedIn() {
 
 const REASONS = [
   { value: '',            label: 'What is this about?' },
-  { value: 'internship',  label: 'Internship opportunity' },
   { value: 'fulltime',    label: 'Full-time role' },
   { value: 'collab',      label: 'Collaboration' },
   { value: 'resume',      label: 'Resume request' },
@@ -33,7 +32,6 @@ const REASONS = [
 ];
 
 const PLACEHOLDERS = {
-  internship: 'Tell me about the internship and the company...',
   fulltime:   'Tell me about the role and what you are looking for...',
   collab:     'Tell me about the project or idea...',
   resume:     'Tell me about the role and I will send my resume over...',
@@ -80,6 +78,11 @@ export default function Contact() {
 
   return (
     <section className="section contact-section" id="contact">
+      <div className="contact-bg" aria-hidden="true">
+        <span className="contact-bg-blob contact-bg-blob-1" />
+        <span className="contact-bg-blob contact-bg-blob-2" />
+        <span className="contact-bg-blob contact-bg-blob-3" />
+      </div>
       <div className="contact-inner">
 
         {/* top */}
@@ -96,7 +99,7 @@ export default function Contact() {
           </div>
           <h2 className="contact-heading">Let's work together.</h2>
           <p className="contact-sub">
-            Open to internships, full-time roles and collaborations. Pick the quickest path for you.
+            Got an idea, a role, or a problem worth solving? I'd love to hear about it.
           </p>
         </motion.div>
 

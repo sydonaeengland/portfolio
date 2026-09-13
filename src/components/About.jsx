@@ -14,9 +14,9 @@ function Counter({ to, suffix = '', decimals = 0 }) {
 }
 
 const STATS = [
-  { to: 6,    suffix: '+', label: 'Years Coding',     decimals: 0 },
-  { to: 2,    suffix: '',  label: 'Hackathons', decimals: 0 },
-  { to: 5,    suffix: '+', label: 'Projects Shipped', decimals: 0 },
+  { to: 6,    suffix: '+', label: 'Projects Built', decimals: 0 },
+  { to: 2,    suffix: '',  label: 'Hackathons',      decimals: 0 },
+  { to: 3.80, suffix: '',  label: 'GPA',             decimals: 2 },
 ];
 
 export default function About() {
@@ -24,9 +24,9 @@ export default function About() {
     <section className="about-section" id="about">
       <div className="about-inner">
 
-        <div className="about-top-row">
+        <div className="about-split">
           <motion.div
-            className="about-left"
+            className="about-left-col"
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -35,26 +35,29 @@ export default function About() {
             <p className="about-eyebrow">About me</p>
             <h2 className="about-headline">
               Software developer.<br />
-              <em>Full arc, every project.</em>
+              <em>First Class Honours.</em>
             </h2>
           </motion.div>
 
           <motion.div
-            className="about-right"
+            className="about-right-col"
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.65, delay: 0.15 }}
+            transition={{ duration: 0.65, delay: 0.1 }}
           >
             <p className="about-bio">
-              I am a final-year Computer Science student at UWI Mona with nine years
-              of coding experience. I enjoy thinking through a project from ideation
-              and design to the final build. I work across the full stack: web,
-              mobile and backend. Whatever the problem needs, I figure it out.
+              I genuinely love building solutions to things. Give me a broken process, a
+              slow system, or a gap nobody's bothered to fix, and I'll turn it into
+              something people actually enjoy using. That's taken me from digitising
+              Jamaica's driver's licence renewal process end to end, to building AI learning
+              tools that speak Jamaican Creole, to designing and shipping ideas solo when
+              no one else was going to. I care about the whole thing: the code, the design,
+              the person on the other end of the screen.
             </p>
             <div className="about-edu-block">
               <span className="about-edu-school">University of the West Indies, Mona</span>
-              <span className="about-edu-deg">BSc Computer Science · Expected May 2026</span>
+              <span className="about-edu-deg">BSc Computer Science · First Class Honours · GPA 3.80</span>
             </div>
           </motion.div>
         </div>
@@ -64,7 +67,7 @@ export default function About() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.55, delay: 0.25 }}
+          transition={{ duration: 0.55, delay: 0.2 }}
         >
           {STATS.map((s) => (
             <div className="about-stat" key={s.label}>

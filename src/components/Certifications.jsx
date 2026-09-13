@@ -5,11 +5,18 @@ export default function Leadership() {
   return (
     <section className="section bg-black section-angled" id="leadership">
       <div className="section-inner">
-        <div className="section-eyebrow">
-          <div className="section-eyebrow-line" />
-          <span className="section-eyebrow-label">Community</span>
-        </div>
-        <h2 className="section-heading">Leadership</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="section-eyebrow">
+            <div className="section-eyebrow-line" />
+            <span className="section-eyebrow-label">Community</span>
+          </div>
+          <h2 className="section-heading">Leadership</h2>
+        </motion.div>
 
         <div className="leadership-grid">
           <motion.div
@@ -23,7 +30,7 @@ export default function Leadership() {
               <Users size={18} />
             </div>
             <div className="leadership-role">Publications Chairperson</div>
-            <div className="leadership-org">UWI Computing Subcommittee — 2025–Present</div>
+            <div className="leadership-org">UWI Computing Subcommittee, 2025-Present</div>
             <p className="leadership-desc">
               Leading digital content strategy, designing promotional materials, and managing departmental
               communications to drive student engagement across the Faculty of Science and Technology.

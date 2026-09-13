@@ -1,7 +1,35 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState, useEffect } from 'react';
 import heroImg from '../assets/face2.jpg';
+
+const TYPED_ROLES = ['Software Developer', 'Full-Stack Developer', 'Web Developer'];
+
+function useTypedText(words, { typeSpeed = 65, deleteSpeed = 35, pause = 1600 } = {}) {
+  const [text, setText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+
+  useEffect(() => {
+    const current = words[wordIndex % words.length];
+    let timeout;
+
+    if (!deleting && text === current) {
+      timeout = setTimeout(() => setDeleting(true), pause);
+    } else if (deleting && text === '') {
+      setDeleting(false);
+      setWordIndex(i => i + 1);
+    } else {
+      timeout = setTimeout(() => {
+        setText(t => deleting ? current.slice(0, t.length - 1) : current.slice(0, t.length + 1));
+      }, deleting ? deleteSpeed : typeSpeed);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [text, deleting, wordIndex, words, typeSpeed, deleteSpeed, pause]);
+
+  return text;
+}
 
 const FADE_UP = (delay = 0) => ({
   initial:    { opacity: 0, y: 24 },
@@ -55,6 +83,7 @@ export default function Hero() {
   const spotRef   = useRef(null);
   const sparkRef  = useRef(null);
   const tickRef   = useRef(0);
+  const typedRole = useTypedText(TYPED_ROLES);
 
   const handleMouseMove = useCallback((e) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -97,11 +126,12 @@ export default function Hero() {
         </motion.div>
 
         <motion.p className="hero-role" {...FADE_UP(0.22)}>
-          Software Developer &nbsp;·&nbsp; Web &amp; Mobile &nbsp;·&nbsp; Full-Stack
+          <span className="hero-role-typed">{typedRole}</span>
+          <span className="hero-role-cursor" aria-hidden="true" />
         </motion.p>
 
         <motion.p className="hero-tagline" {...FADE_UP(0.32)}>
-          I design and build software that solves real problems — clean architecture, thoughtful interfaces, and code that holds up in production.
+          I design and build software that solves real problems: clean architecture, thoughtful interfaces, and working prototypes built to demonstrate real solutions.
         </motion.p>
 
         <motion.div className="hero-ctas" {...FADE_UP(0.42)}>

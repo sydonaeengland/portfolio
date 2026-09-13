@@ -20,7 +20,7 @@ export default function ProjectDetailPage() {
     return (
       <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', gap: '16px' }}>
         <p style={{ fontFamily: 'var(--font-body)', color: 'var(--color-muted)' }}>Project not found.</p>
-        <button onClick={() => navigate('/projects')} style={{ fontFamily: 'var(--font-body)', color: 'var(--color-accent)', background: 'none', border: 'none', cursor: 'none' }}>
+        <button onClick={() => navigate('/projects')} style={{ fontFamily: 'var(--font-body)', color: 'var(--color-accent)', background: 'none', border: 'none', cursor: 'pointer' }}>
           ← Back to projects
         </button>
       </div>
@@ -37,7 +37,7 @@ export default function ProjectDetailPage() {
   useEffect(() => { setActive(0); }, [id]);
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', paddingTop: '96px' }}>
+    <div id="main-content" style={{ minHeight: '100vh', background: 'var(--color-bg)', paddingTop: '96px' }}>
       {/* Accent glow */}
       <div aria-hidden="true" style={{
         position: 'fixed', top: 0, left: 0, right: 0, height: '3px',
@@ -102,19 +102,20 @@ export default function ProjectDetailPage() {
         <div style={{ marginBottom: '48px' }}>
           {/* Main image */}
           <div style={{
-            width: '100%', aspectRatio: '16/9',
+            width: '100%', maxHeight: '65vh', aspectRatio: '16/9',
             background: `linear-gradient(135deg, var(--color-card-alt), ${project.color}0a)`,
             borderRadius: 'var(--radius-md)',
             border: `1px solid ${project.color}25`,
             overflow: 'hidden', marginBottom: images.length > 1 ? '12px' : '0',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: images.length > 0 ? '10px' : 0,
           }}>
             {images.length > 0 ? (
               <img
                 key={images[active]}
                 src={images[active]}
                 alt={`${project.name} screenshot ${active + 1}`}
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                style={{ width: '100%', height: '100%', objectFit: 'contain', borderRadius: '6px' }}
               />
             ) : (
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', color: project.color, opacity: 0.3 }} aria-hidden="true">
@@ -241,6 +242,7 @@ export default function ProjectDetailPage() {
           )}
 
           {/* GitHub link */}
+          {project.github && (
           <div>
             <a
               href={project.github}
@@ -271,6 +273,7 @@ export default function ProjectDetailPage() {
               View on GitHub
             </a>
           </div>
+          )}
         </div>
 
         {/* Prev / Next navigation */}

@@ -1,30 +1,5 @@
 export const PROJECTS = [
   {
-    id: 'pulseos',
-    name: 'PulseOS',
-    subtitle: 'AI-Powered Clinic Management',
-    badge: 'In Development',
-    tagline: 'A full-stack medical office management system designed for private GP clinics in Jamaica — covering every step from patient registration to checkout.',
-    description: `PulseOS is an AI-powered medical office management system built from the ground up for private GP clinics in Jamaica. During visits to a private medical clinic in Kingston, I observed the receptionist managing every appointment in a physical diary. Patient records lived in folders. Prescriptions were handwritten. Lab requisitions were filled out by hand, signed, and handed to patients to take to Caledonia or MDS themselves.\n\nPulseOS replaces every one of those paper-based workflows with a structured, role-based digital system that understands the Jamaican healthcare landscape — NHF coverage, DPA 2020 compliance, MCJ registration numbers on every document, and a print-and-sign workflow that matches how pharmacies and labs actually operate today.`,
-    role: 'Sole developer — designing and building the entire system from database schema to frontend, AI integrations, and deployment pipeline.',
-    stack: ['Node.js', 'Express', 'React', 'MySQL', 'Anthropic Claude API', 'Railway', 'Vercel', 'JWT', 'Tailwind CSS'],
-    highlights: [
-      'NHF integration flags subsidised medications and diagnostics for 28 chronic illnesses',
-      'DPA 2020 compliance: immutable audit log, consent capture, breach notification workflow aligned with OIC',
-      'Print-ready clinical documents auto-populated with clinic logo, doctor name, and MCJ number',
-      'AI clinical note summarisation — free text in, structured clinical record out via Claude API',
-      'Drug interaction flagging checks every new prescription against active medications and allergies',
-      'Interactive SVG body map for injury annotation with freehand drawing saved as base64',
-      'Symptom triage classifies urgency as Routine, Priority, or Emergency at booking time',
-      'OCR pipeline for scanned lab results and historical patient cards with per-field confidence scores',
-      'Self-registration tablet flow — patients register at reception, staff activates the record',
-      'No-show prediction model flags high-risk appointments for targeted reminders',
-    ],
-    github: 'https://github.com/sydonaeengland/PulseOS.git',
-    image: null,
-    color: '#14B8A6',
-  },
-  {
     id: 'dlrsjam',
     name: 'DLRSJAM',
     subtitle: "Driver's Licence Renewal System of Jamaica",
@@ -34,12 +9,12 @@ export const PROJECTS = [
 
 The system uses a three-tier architecture: a React PWA frontend, a Python Flask REST API, and a PostgreSQL database. Three role-based portals serve applicants, TAJ officers, and supervisors, each with scoped access enforced server-side. The 8-step application workflow takes an applicant from transaction selection through document upload, AI-powered liveness verification, digital signature, and Stripe payment, ending with automated officer assignment and digital licence generation on approval.
 
-The AI verification pipeline combines Tesseract OCR for document data extraction (98.2% accuracy, under 3 seconds), MediaPipe FaceMesh for client-side liveness detection using 468 3D facial landmarks and rPPG colour analysis, face-api.js for 128-dimensional face descriptor matching, DeepFace server-side anti-spoofing, and Claude Haiku via OpenRouter for document quality assessment. All 58 functional test cases passed at a 100% pass rate.`,
-    role: 'Full-stack developer, sole developer on the frontend and co-developer on the backend.',
-    stack: ['React', 'Python', 'Flask', 'PostgreSQL', 'MediaPipe', 'Tesseract', 'Stripe', 'JWT', 'DeepFace', 'OpenRouter'],
+The AI verification pipeline combines Tesseract OCR for document data extraction (high accuracy, under 3 seconds), MediaPipe FaceMesh for client-side liveness detection using 468 3D facial landmarks and rPPG colour analysis, face-api.js for 128-dimensional face descriptor matching, DeepFace server-side anti-spoofing, and Claude Haiku via OpenRouter for document quality assessment. All 58 functional test cases passed at a 100% pass rate.`,
+    role: 'Sole Developer: designed and built the entire system end-to-end.',
+    stack: ['React', 'Python', 'Flask', 'PostgreSQL', 'MediaPipe', 'Stripe', 'Tailwind CSS'],
     highlights: [
       'Three role-based portals: applicant, TAJ officer, and supervisor with full audit trail',
-      'Tesseract OCR extracts licence data with 98.2% accuracy in under 3 seconds',
+      'Tesseract OCR pipeline extracts licence data with high accuracy in under 3 seconds',
       'Client-side liveness detection using MediaPipe FaceMesh with rPPG biological signal analysis',
       'face-api.js 128-dimensional face descriptor matching against uploaded licence photo',
       'DeepFace server-side anti-spoofing as a secondary verification gateway',
@@ -49,7 +24,7 @@ The AI verification pipeline combines Tesseract OCR for document data extraction
       'Stripe payment processing, card data never stored by the system',
       '58 functional test cases, 100% pass rate',
     ],
-    github: 'https://github.com/sydonaeengland',
+    github: 'https://github.com/sydonaeengland/DLRSJAM',
     image: new URL('../assets/dlrsjam-1.JPG', import.meta.url).href,
     gallery: [
       new URL('../assets/dlrsjam-1.JPG', import.meta.url).href,
@@ -75,8 +50,8 @@ Users paste or submit a URL and ClickSafe analyses it instantly for phishing ind
 The platform also connects to Gmail and Outlook via OAuth, letting users scan inbox emails directly without leaving the app. For suspicious screenshots or forwarded messages, users can upload an image and have the text extracted and scanned automatically. Every scan returns a risk score (0 to 100), a scam category, red flag breakdown, plain-language explanation, and actionable safety advice. Users can copy a full scan report or report directly to UWI IT in one click.
 
 Awarded 1st Place at the UWI AI for Good Hackathon 2026, recognised for real-world impact potential and practical application of AI to a widespread social problem.`,
-    role: 'Lead developer, designed and built the full frontend, integrated Gmail and Outlook OAuth flows, and connected the AI scan pipeline.',
-    stack: ['Lovable', 'ChatGPT', 'Supabase', 'OpenRouter', 'TypeScript'],
+    role: 'Lead Developer: designed and built the full frontend, integrated Gmail and Outlook OAuth flows, and connected the AI scan pipeline.',
+    stack: ['TypeScript', 'Supabase'],
     highlights: [
       'Awarded 1st Place, UWI AI for Good Hackathon 2026',
       'Real-time link scanning with AI-powered phishing detection',
@@ -119,7 +94,7 @@ The platform includes AI whiteboard explainer videos, flashcards, quizzes, mock 
       'Flashcards, quizzes, mock exams and past papers in one platform',
       'Built to scale from PEP through CSEC and CAPE',
     ],
-    github: 'https://github.com/sydonaeengland/learnwidmi',
+    github: null,
     image: new URL('../assets/learnwidmi-1.jpg', import.meta.url).href,
     gallery: [
       new URL('../assets/learnwidmi-1.jpg', import.meta.url).href,
@@ -146,8 +121,8 @@ The backend uses connection pooling for efficient database access under load, an
       'Role-based access for students and instructors',
       'Assignment submission and grade management',
     ],
-    github: 'https://github.com/sydonaeengland',
-    image: '/assets/images/projects/courseflow.png',
+    github: 'https://github.com/sydonaeengland/CourseFlow',
+    image: null,
     color: '#FB923C',
   },
   {
@@ -156,7 +131,7 @@ The backend uses connection pooling for efficient database access under load, an
     subtitle: 'Desktop School Administration System',
     badge: 'Academic',
     tagline: 'Replacing paper-based school administration with a structured, role-based desktop system.',
-    description: `MRC Family School had no digital system. Student enrolment, class assignments, attendance, grades, and staff records were all managed by hand. This desktop application replaced every one of those manual processes with a centralised system built around a repository architecture pattern — each module is independent, connected through a central data layer, so changes in one area do not break another.
+    description: `MRC Family School had no digital system. Student enrolment, class assignments, attendance, grades, and staff records were all managed by hand. This desktop application replaced every one of those manual processes with a centralised system built around a repository architecture pattern: each module is independent, connected through a central data layer, so changes in one area do not break another.
 
 Two access levels keep things clean: teachers manage their own classes, attendance records, and grade entries; administrators have full access across all modules including student enrolment and staff records. Every staff action is logged for accountability.
 
@@ -171,8 +146,8 @@ Six modules cover the full scope of school administration: Student Management, C
       'All staff actions logged for accountability and compliance',
       'Offline-capable, no internet dependency required',
     ],
-    github: 'https://github.com/sydonaeengland',
-    image: '/assets/images/projects/mrc.png',
+    github: 'https://github.com/sydonaeengland/MRC-Family-School',
+    image: null,
     color: '#60A5FA',
   },
   {
@@ -181,12 +156,12 @@ Six modules cover the full scope of school administration: Student Management, C
     subtitle: 'Remote Elder Care Connection App',
     badge: 'Design',
     tagline: 'Giving overseas families a reliable way to care for elderly relatives back home.',
-    description: `CareLink is a mobile app concept designed for INFO3170: User Interface Design. Many Jamaicans living overseas rely on informal WhatsApp coordination and money transfers to arrange care for elderly relatives at home. There is no tracking, no verification, no safety net — just hope that things go smoothly. CareLink was designed to replace that with a trusted, accessible platform built specifically for this situation.
+    description: `CareLink is a mobile app concept designed for INFO3170: User Interface Design. Many Jamaicans living overseas rely on informal WhatsApp coordination and money transfers to arrange care for elderly relatives at home. There is no tracking, no verification, no safety net, just hope that things go smoothly. CareLink was designed to replace that with a trusted, accessible platform built specifically for this situation.
 
-The design process started with user research: interviews with elderly participants aged 70 to 82 and their overseas family members, focusing on daily routines, safety concerns, and existing workarounds. A review of three competing platforms confirmed the gap — no existing solution combines grocery delivery, medication pickup, verified caregivers, elderly-accessible design, and real-time family visibility in one place for the Jamaican market.
+The design process started with user research: interviews with elderly participants aged 70 to 82 and their overseas family members, focusing on daily routines, safety concerns, and existing workarounds. A review of three competing platforms confirmed the gap: no existing solution combines grocery delivery, medication pickup, verified caregivers, elderly-accessible design, and real-time family visibility in one place for the Jamaican market.
 
-The resulting design prioritises trust, visibility, and accessibility at every step. Verified provider profiles with photos are visible to families before anyone arrives at the home. Every delivery requires photo confirmation. An emergency button sends simultaneous alerts to the family abroad, the assigned caregiver, and local responders. For elderly users specifically, the interface uses large fonts, voice assistance, one-tap confirmations, and plain-language prompts throughout — designed so that usability could be measured by how long elderly users take to complete core tasks without any help.`,
-    role: 'Lead UI/UX Designer — conducted user research, designed all wireframes, and built the high-fidelity prototype in Figma.',
+The resulting design prioritises trust, visibility, and accessibility at every step. Verified provider profiles with photos are visible to families before anyone arrives at the home. Every delivery requires photo confirmation. An emergency button sends simultaneous alerts to the family abroad, the assigned caregiver, and local responders. For elderly users specifically, the interface uses large fonts, voice assistance, one-tap confirmations, and plain-language prompts throughout, designed so that usability could be measured by how long elderly users take to complete core tasks without any help.`,
+    role: 'Lead UI/UX Designer: conducted user research, designed all wireframes, and built the high-fidelity prototype in Figma.',
     stack: ['Figma'],
     highlights: [
       'User research with elderly participants and overseas family members informed every design decision',
@@ -197,7 +172,7 @@ The resulting design prioritises trust, visibility, and accessibility at every s
       'SMS and offline fallback for rural areas with unreliable internet or power',
       'Full process from research and competitive analysis through wireframes to high-fidelity prototype',
     ],
-    github: 'https://github.com/sydonaeengland',
+    github: null,
     image: new URL('../assets/care-1.jpg', import.meta.url).href,
     gallery: [
       new URL('../assets/care-1.jpg', import.meta.url).href,

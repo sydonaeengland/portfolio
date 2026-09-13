@@ -1,7 +1,17 @@
-import { useState, useRef, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
+const ICON_MAP = {
+  React:      `${DI}/react/react-original.svg`,
+  Python:     `${DI}/python/python-original.svg`,
+  Flask:      `${DI}/flask/flask-original.svg`,
+  PostgreSQL: `${DI}/postgresql/postgresql-original.svg`,
+  Java:       `${DI}/java/java-original.svg`,
+  Figma:      `${DI}/figma/figma-original.svg`,
+  MySQL:      `${DI}/mysql/mysql-original.svg`,
+};
 
 import dlrsjam1 from '../assets/dlrsjam-1.JPG';
 import dlrsjam3 from '../assets/dlrsjam-3.JPG';
@@ -20,24 +30,15 @@ import care1 from '../assets/care-1.jpg';
 import care2 from '../assets/care-2.png';
 import care3 from '../assets/care-3.png';
 
-const DI = 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons';
-const ICON_MAP = {
-  React:      `${DI}/react/react-original.svg`,
-  Python:     `${DI}/python/python-original.svg`,
-  Flask:      `${DI}/flask/flask-original.svg`,
-  PostgreSQL: `${DI}/postgresql/postgresql-original.svg`,
-  Java:       `${DI}/java/java-original.svg`,
-  Figma:      `${DI}/figma/figma-original.svg`,
-  MySQL:      `${DI}/mysql/mysql-original.svg`,
-};
-
 const PROJECTS = [
   {
-    num: '01', name: 'DLRSJAM', tag: 'Capstone · COMP3901 · Full-Stack PWA',
-    role: 'Full-Stack Developer', year: '2026', color: '#5B3CF5', accent: '#B8AAFF',
+    id: 'dlrsjam',
+    num: '01', name: 'DLRSJAM', tag: 'Full-Stack PWA · Capstone Project',
+    categories: ['Python', 'React', 'AI'],
+    role: 'Sole Developer', year: '2026', color: '#7B5EF8', accent: '#B8AAFF',
     fullName: "Driver's Licence Renewal System of Jamaica",
     short: "A full prototype PWA that takes Jamaica's driver's licence renewal from a manual, queue-dependent process to a secure guided digital workflow with AI identity verification.",
-    desc: "DLRSJAM addresses a real gap in Jamaica's public services: there is no official way to renew a driver's licence digitally. The system guides applicants through a structured workflow covering document submission, biometric identity verification, payment, and officer review — all without leaving home. Three separate portals serve applicants, processing officers, and supervisors, each with scoped access and a full audit trail.",
+    desc: "DLRSJAM addresses a real gap in Jamaica's public services: there is no official way to renew a driver's licence digitally. The system guides applicants through a structured workflow covering document submission, biometric identity verification, payment, and officer review, all without leaving home. Three separate portals serve applicants, processing officers, and supervisors, each with scoped access and a full audit trail.",
     detail: [
       'AI-powered identity verification combining document analysis, liveness detection, and face matching.',
       'Role-based portals for applicants, officers, and supervisors with server-enforced access control.',
@@ -46,27 +47,33 @@ const PROJECTS = [
       'Digital licence generated and available for download immediately on approval.',
     ],
     stack: ['React', 'Python', 'Flask', 'PostgreSQL', 'MediaPipe', 'Stripe'], screenshots: [dlrsjam1, dlrsjam3, dlrsjam4, dlrsjam5, dlrsjam6, dlrsjam7, dlrsjam8],
+    github: 'https://github.com/sydonaeengland/DLRSJAM',
   },
   {
-    num: '02', name: 'ClickSafe', tag: '1st Place, UWI AI for Good Hackathon 2026',
-    role: 'Lead Developer', year: '2026', color: '#22C55E', accent: '#86EFAC',
+    id: 'clicksafe',
+    num: '02', name: 'ClickSafe', tag: 'AI Security · Hackathon Winner',
+    categories: ['React', 'AI'],
+    role: 'Lead Developer', year: '2026', color: '#7B5EF8', accent: '#B8AAFF',
     fullName: 'AI-Powered Phishing Detection Platform',
-    short: 'Real-time phishing detection built for everyday users. Scan links, emails, or screenshots and know instantly whether to click. Won 1st place in 24 hours.',
-    desc: "Most phishing protection is built for security professionals. ClickSafe was built for everyone else. Students, everyday users, and anyone who receives suspicious links or emails can paste, scan, or upload and get a clear, plain-language answer on whether something is safe — no technical knowledge required.",
+    short: 'Real-time phishing detection built for everyday users. Scan links, emails, or screenshots and know instantly whether to click. Won 1st place in 7 hours.',
+    desc: "Most phishing protection is built for security professionals. ClickSafe was built for everyone else. Students, everyday users, and anyone who receives suspicious links or emails can paste, scan, or upload and get a clear, plain-language answer on whether something is safe, no technical knowledge required.",
     detail: [
       'Scans links, email text, and uploaded screenshots through a single unified pipeline.',
       'Connects to Gmail and Outlook so users can scan their actual inbox without leaving the app.',
       'AI assesses multiple threat signals and returns a risk score with a plain-language explanation.',
       'Results show what was flagged, why it was flagged, and what to do next.',
-      'Built and submitted in under 24 hours, awarded 1st place for real-world impact.',
+      'Built and submitted in 7 hours, awarded 1st place for real-world impact.',
     ],
-    stack: ['Lovable', 'Supabase', 'OpenRouter', 'TypeScript'], screenshots: [clicksafe1, clicksafe2, clicksafe3],
+    stack: ['TypeScript', 'Supabase'], screenshots: [clicksafe1, clicksafe2, clicksafe3],
+    github: 'https://github.com/sydonaeengland/ClickSafe',
   },
   {
-    num: '03', name: 'LearnWidMi', tag: 'Top 10 + Educational Impact Award, Intellibus x JDF 2026',
-    role: 'Frontend Developer & Product Co-designer', year: '2026', color: '#F59E0B', accent: '#FCD34D',
+    id: 'learnwidmi',
+    num: '03', name: 'LearnWidMi', tag: 'EdTech Platform · Award Winner',
+    categories: ['React', 'AI'],
+    role: 'Full-Stack Developer', year: '2026', color: '#7B5EF8', accent: '#B8AAFF',
     fullName: 'AI Learning Platform for Jamaican Students',
-    short: 'AI-powered learning that meets Jamaican students where they are — in the language they actually speak. Top 10 and Educational Impact Award winner.',
+    short: 'AI-powered learning that meets Jamaican students where they are, in the language they actually speak. Top 10 and Educational Impact Award winner.',
     desc: "Jamaica's education system teaches in Standard English, but most students communicate in Patois every day. That gap quietly blocks understanding. LearnWidMi removes it by delivering curriculum content in both languages, so students can grasp concepts in the language that feels natural before bridging to formal English.",
     detail: [
       'Curriculum explanations available in both Standard English and Jamaican Patois.',
@@ -76,10 +83,13 @@ const PROJECTS = [
       'Practice tools including flashcards, quizzes, mock exams, and past papers.',
     ],
     stack: ['React', 'Supabase', 'ElevenLabs', 'OpenRouter'], screenshots: [learnwidmi1, learnwidmi2, learnwidmi3],
+    github: null,
   },
   {
-    num: '04', name: 'MRC School System', tag: 'Software Engineering · COMP2140',
-    role: 'Lead Developer', year: '2024', color: '#0EA5E9', accent: '#7DD3FC',
+    id: 'mrc',
+    num: '04', name: 'MRC School System', tag: 'Desktop Application',
+    categories: ['Java'],
+    role: 'Lead Developer', year: '2024', color: '#7B5EF8', accent: '#B8AAFF',
     fullName: 'MRC Family School Management System',
     short: 'A Java desktop system that replaced entirely paper-based school administration with a structured, role-based management tool built for teachers and administrators.',
     desc: 'MRC Family School had no digital system. Every student record, class assignment, attendance log, and grade was managed by hand. This desktop application centralised all of that into one structured system with separate access levels for teachers and administrators, built around a clean repository architecture that keeps each module independent.',
@@ -91,13 +101,16 @@ const PROJECTS = [
       'Designed to run offline without internet dependency.',
     ],
     stack: ['Java', 'MySQL', 'OOP'], screenshots: [],
+    github: 'https://github.com/sydonaeengland/MRC-Family-School',
   },
   {
-    num: '05', name: 'CareLink', tag: 'UI/UX Design · INFO3170',
-    role: 'Lead Designer', year: '2025', color: '#EC4899', accent: '#F9A8D4',
+    id: 'care',
+    num: '05', name: 'CareLink', tag: 'Mobile App Design',
+    categories: [],
+    role: 'Lead Designer', year: '2025', color: '#7B5EF8', accent: '#B8AAFF',
     fullName: 'Remote Elder Care Connection App',
     short: 'A UI/UX design project addressing a real gap: no platform in Jamaica combines verified care services, elderly-accessible design, and real-time family visibility in one place.',
-    desc: 'CareLink is a mobile app concept designed for INFO3170. Many Jamaicans living overseas rely on informal WhatsApp coordination to arrange care for elderly relatives at home — no tracking, no verification, no safety net. CareLink was designed to replace that with a trusted, accessible platform built specifically around the needs of elderly users and the families watching from abroad.',
+    desc: 'CareLink is a mobile app concept designed for INFO3170. Many Jamaicans living overseas rely on informal WhatsApp coordination to arrange care for elderly relatives at home, with no tracking, no verification, and no safety net. CareLink was designed to replace that with a trusted, accessible platform built specifically around the needs of elderly users and the families watching from abroad.',
     detail: [
       'Designed for elderly users: large fonts, voice assistance, one-tap confirmations, and plain-language prompts throughout.',
       'Verified provider network with photo identification visible to families before anyone arrives at the home.',
@@ -106,18 +119,17 @@ const PROJECTS = [
       'SMS and offline fallback for rural areas with unreliable internet or power.',
     ],
     stack: ['Figma', 'UI/UX'], screenshots: [care1, care2, care3], portrait: true,
+    github: null,
   },
 ];
 
 function ProjectDrawer({ project, onClose }) {
-  const navigate = useNavigate();
   const [activeImg, setActiveImg] = useState(0);
   const [lightbox, setLightbox] = useState(false);
   const n = project.screenshots.length;
   const prev = () => setActiveImg(i => (i - 1 + n) % n);
   const next = () => setActiveImg(i => (i + 1) % n);
 
-  // keyboard navigation
   useEffect(() => {
     const handler = e => {
       if (e.key === 'ArrowLeft')  prev();
@@ -127,6 +139,8 @@ function ProjectDrawer({ project, onClose }) {
     window.addEventListener('keydown', handler);
     return () => window.removeEventListener('keydown', handler);
   }, [lightbox, n]);
+
+  const hasImages = project.screenshots.length > 0;
 
   return (
     <motion.div
@@ -139,178 +153,136 @@ function ProjectDrawer({ project, onClose }) {
     >
       <motion.div
         className="proj-modal"
-        initial={{ opacity: 0, scale: 0.97, y: 20 }}
+        initial={{ opacity: 0, scale: 0.96, y: 24 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.97, y: 10 }}
-        transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
+        exit={{ opacity: 0, scale: 0.97, y: 12 }}
+        transition={{ duration: 0.32, ease: [0.32, 0.72, 0, 1] }}
         onClick={e => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${project.name} project details`}
       >
         <button className="proj-modal-close" onClick={onClose} aria-label="Close">
-          <X size={16} />
+          <X size={17} />
         </button>
 
-        <div className={`proj-modal-layout${project.screenshots.length === 0 ? ' proj-modal-layout-noimg' : ''}`}>
+        <div className="proj-modal-scroll">
 
-          {/* LEFT: gallery */}
-          <div className="proj-modal-gallery-col">
+          {/* HERO: image up top, badge + title overlaid */}
+          <div
+            className={`proj-modal-hero${project.portrait ? ' proj-modal-hero-portrait' : ''}`}
+            style={{ background: `linear-gradient(160deg, ${project.color}22 0%, var(--color-bg) 65%)` }}
+          >
+            {hasImages ? (
+              <img
+                key={activeImg}
+                src={project.screenshots[activeImg]}
+                alt={`${project.name} screenshot ${activeImg + 1}`}
+                className="proj-modal-hero-img"
+                onClick={() => setLightbox(true)}
+              />
+            ) : (
+              <span className="proj-modal-ghost" style={{ color: `${project.color}22` }}>{project.name}</span>
+            )}
 
-            {/* landscape: full image, no crop */}
-            {!project.portrait && project.screenshots.length > 0 && (
-              <div className="proj-modal-gallery-main" style={{ background: `radial-gradient(ellipse at 50% 50%, ${project.color}18 0%, #0C0C0E 80%)` }}>
-                <img
-                  key={activeImg}
-                  src={project.screenshots[activeImg]}
-                  alt={`${project.name} screenshot ${activeImg + 1}`}
-                  className="proj-modal-gallery-img"
-                  onClick={() => setLightbox(true)}
-                />
-                {n > 1 && (
-                  <>
-                    <button className="proj-modal-gallery-arrow proj-modal-gallery-arrow-left" onClick={prev} aria-label="Previous">
-                      <ChevronLeft size={16} />
-                    </button>
-                    <button className="proj-modal-gallery-arrow proj-modal-gallery-arrow-right" onClick={next} aria-label="Next">
-                      <ChevronRight size={16} />
-                    </button>
-                    <span className="proj-modal-gallery-count">{activeImg + 1} / {n}</span>
-                  </>
-                )}
-                <button className="proj-modal-expand" onClick={() => setLightbox(true)} aria-label="Expand image">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+            {hasImages && n > 1 && (
+              <>
+                <button className="proj-modal-gallery-arrow proj-modal-gallery-arrow-left" onClick={prev} aria-label="Previous screenshot">
+                  <ChevronLeft size={18} />
                 </button>
-              </div>
+                <button className="proj-modal-gallery-arrow proj-modal-gallery-arrow-right" onClick={next} aria-label="Next screenshot">
+                  <ChevronRight size={18} />
+                </button>
+                <span className="proj-modal-gallery-count">{activeImg + 1} / {n}</span>
+              </>
             )}
 
-            {/* landscape: no screenshots */}
-            {!project.portrait && project.screenshots.length === 0 && (
-              <div className="proj-modal-gallery-main" style={{ background: `radial-gradient(ellipse at 50% 50%, ${project.color}18 0%, #0C0C0E 80%)` }}>
-                <span className="proj-modal-ghost" style={{ color: `${project.color}20` }}>{project.name}</span>
-              </div>
-            )}
-
-            {/* portrait: single screen viewer with arrows */}
-            {project.portrait && project.screenshots.length > 0 && (
-              <div className="proj-modal-portrait-viewer" style={{ background: `radial-gradient(ellipse at 50% 80%, ${project.color}18 0%, #0C0C0E 70%)` }}>
-                <div className="proj-modal-portrait-single" style={{ position: 'relative' }}>
-                  <img
-                    key={activeImg}
-                    src={project.screenshots[activeImg]}
-                    alt={`${project.name} screen ${activeImg + 1}`}
-                    className="proj-modal-portrait-img"
-                    onClick={() => setLightbox(true)}
-                    style={{ cursor: 'zoom-in' }}
-                  />
-                  <button className="proj-modal-expand proj-modal-expand-portrait" onClick={() => setLightbox(true)} aria-label="Expand image">
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
-                  </button>
-                </div>
-                {project.screenshots.length > 1 && (
-                  <div className="proj-modal-portrait-nav">
-                    <button
-                      onClick={() => setActiveImg(i => (i - 1 + project.screenshots.length) % project.screenshots.length)}
-                      className="proj-modal-portrait-arrow"
-                      style={{ color: project.color }}
-                      aria-label="Previous screen"
-                    >
-                      <ChevronLeft size={16} />
-                    </button>
-                    <span className="proj-modal-portrait-count" style={{ color: project.color }}>
-                      {activeImg + 1} / {project.screenshots.length}
-                    </span>
-                    <button
-                      onClick={() => setActiveImg(i => (i + 1) % project.screenshots.length)}
-                      className="proj-modal-portrait-arrow"
-                      style={{ color: project.color }}
-                      aria-label="Next screen"
-                    >
-                      <ChevronRight size={16} />
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* landscape thumbnails */}
-            {!project.portrait && project.screenshots.length > 1 && (
-              <div className="proj-modal-thumbs">
-                {project.screenshots.map((src, i) => (
-                  <button
-                    key={i}
-                    className="proj-modal-thumb"
-                    onClick={() => setActiveImg(i)}
-                    style={{
-                      border: `2px solid ${i === activeImg ? project.color : 'rgba(255,255,255,0.08)'}`,
-                      opacity: i === activeImg ? 1 : 0.4,
-                    }}
-                    aria-label={`Screenshot ${i + 1}`}
-                  >
-                    <img src={src} alt="" />
-                  </button>
-                ))}
-              </div>
-            )}
-
-            {/* meta */}
-            <div className="proj-modal-meta">
-              {[
-                { label: 'Role',     val: project.role },
-                { label: 'Year',     val: project.year },
-                { label: 'Category', val: project.tag  },
-              ].map(m => (
-                <div key={m.label} className="proj-modal-meta-item">
-                  <span className="proj-drawer-meta-label">{m.label}</span>
-                  <span className="proj-drawer-meta-val">{m.val}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT: content */}
-          <div className="proj-modal-content-col">
-            <p className="proj-modal-num" style={{ color: project.accent }}>{project.num}</p>
-            <h2 className="proj-modal-name">{project.name}</h2>
-            <p className="proj-modal-fullname">{project.fullName}</p>
-
-            <p className="proj-modal-section-label">About</p>
-            <p className="proj-modal-desc">{project.desc}</p>
-
-            <p className="proj-modal-section-label">Key Features</p>
-            <ul className="proj-modal-features">
-              {project.detail.map((d, i) => (
-                <li key={i}>{d}</li>
-              ))}
-            </ul>
-
-            <p className="proj-modal-section-label">Tech Stack</p>
-            <div className="proj-drawer-stack">
-              {project.stack.map(t => (
-                <span key={t} className="proj-stack-chip">
-                  {ICON_MAP[t] && <img src={ICON_MAP[t]} alt={t} />}{t}
-                </span>
-              ))}
-            </div>
-
-            {project.caseStudyLink && (
-              <button
-                onClick={() => { onClose(); navigate(project.caseStudyLink); }}
-                style={{
-                  marginTop: '24px',
-                  display: 'inline-flex', alignItems: 'center', gap: '8px',
-                  padding: '12px 22px', borderRadius: '100px',
-                  background: project.color, color: '#000',
-                  fontFamily: 'var(--font-body)', fontWeight: 600, fontSize: '0.82rem',
-                  border: 'none', cursor: 'pointer',
-                  transition: 'opacity 0.2s',
-                }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
-                onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-              >
-                Read full case study
-                <ArrowRight size={14} />
+            {hasImages && (
+              <button className="proj-modal-expand" onClick={() => setLightbox(true)} aria-label="Expand image">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
               </button>
             )}
+
+            <div className="proj-modal-hero-fade" />
           </div>
 
+          {/* thumbnails */}
+          {hasImages && n > 1 && (
+            <div className="proj-modal-thumbs">
+              {project.screenshots.map((src, i) => (
+                <button
+                  key={i}
+                  className="proj-modal-thumb"
+                  onClick={() => setActiveImg(i)}
+                  style={{
+                    borderColor: i === activeImg ? project.color : 'transparent',
+                    opacity: i === activeImg ? 1 : 0.45,
+                  }}
+                  aria-label={`Screenshot ${i + 1}`}
+                  aria-current={i === activeImg}
+                >
+                  <img src={src} alt="" />
+                </button>
+              ))}
+            </div>
+          )}
+
+          {/* BODY */}
+          <div className="proj-modal-body">
+
+            <div className="proj-modal-heading-row">
+              <div>
+                <p className="proj-modal-num" style={{ color: project.accent }}>Project {project.num}</p>
+                <h2 className="proj-modal-name">{project.name}</h2>
+                <p className="proj-modal-fullname">{project.fullName}</p>
+              </div>
+              {project.github && (
+                <a
+                  className="proj-modal-github"
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ borderColor: `${project.color}55` }}
+                >
+                  View Code
+                  <ArrowRight size={13} />
+                </a>
+              )}
+            </div>
+
+            {/* meta pills */}
+            <div className="proj-modal-pills">
+              <span className="proj-modal-pill"><span className="proj-drawer-meta-label">Role</span>{project.role}</span>
+              <span className="proj-modal-pill"><span className="proj-drawer-meta-label">Year</span>{project.year}</span>
+              <span className="proj-modal-pill"><span className="proj-drawer-meta-label">Category</span>{project.tag}</span>
+            </div>
+
+            <div className="proj-modal-columns">
+              <div className="proj-modal-col-main">
+                <p className="proj-modal-section-label">About</p>
+                <p className="proj-modal-desc">{project.desc}</p>
+
+                <p className="proj-modal-section-label">Key Features</p>
+                <ul className="proj-modal-features">
+                  {project.detail.map((d, i) => (
+                    <li key={i} style={{ '--dot-color': project.color }}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="proj-modal-col-side">
+                <p className="proj-modal-section-label">Tech Stack</p>
+                <div className="proj-drawer-stack">
+                  {project.stack.map(t => (
+                    <span key={t} className="proj-stack-chip">
+                      {ICON_MAP[t] && <img src={ICON_MAP[t]} alt="" />}{t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         {/* lightbox */}
@@ -358,60 +330,98 @@ function ProjectDrawer({ project, onClose }) {
   );
 }
 
-function CardVisual({ project }) {
+function CaseVisual({ project }) {
   if (project.screenshots.length > 0) {
-    return (
-      <div className="proj-card-img-inner" style={{ background: '#000' }}>
-        <img
-          src={project.screenshots[0]}
-          alt={project.name}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-        />
-      </div>
-    );
+    return <img className="case-img" src={project.screenshots[0]} alt={project.name} />;
   }
   return (
     <div
-      className="proj-card-img-inner"
-      style={{ background: `radial-gradient(ellipse at 40% 55%, ${project.color}35 0%, transparent 70%)` }}
+      className="case-img case-img-ghost"
+      style={{ background: `radial-gradient(ellipse at 40% 55%, ${project.color}30 0%, transparent 70%)` }}
     >
-      <span className="proj-card-ghost" style={{ color: `${project.color}35` }}>
-        {project.name}
-      </span>
+      <span className="proj-card-ghost" style={{ color: `${project.color}35` }}>{project.name}</span>
     </div>
   );
 }
 
+function CaseStudyRow({ project, onClick, reverse, index }) {
+  return (
+    <motion.article
+      layout
+      className={`case-row${reverse ? ' case-row-reverse' : ''}`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -24, transition: { duration: 0.3, ease: [0.4, 0, 1, 1] } }}
+      viewport={{ once: true, margin: '-80px' }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      style={{ '--case-color': project.color }}
+    >
+      <span className="case-bg-num" aria-hidden="true">{project.num}</span>
+
+      <button className="case-img-col" onClick={onClick} aria-label={`Open ${project.name} case study`}>
+        <div className="case-img-wrap">
+          <div className="case-img-orbit" aria-hidden="true" />
+          <CaseVisual project={project} />
+          <div className="case-img-glow" />
+        </div>
+      </button>
+
+      <div className="case-content-col">
+        <span className="case-eyebrow">
+          <span className="case-eyebrow-num">{project.num}</span>
+          {project.tag}
+        </span>
+        <h3 className="case-name" onClick={onClick}>{project.name}</h3>
+        <p className="case-fullname">{project.fullName}</p>
+        <p className="case-role"><span className="case-role-label">Role</span>{project.role}</p>
+        <p className="case-short">{project.short}</p>
+
+        <div className="case-stack">
+          {project.stack.slice(0, 5).map(t => (
+            <span key={t} className="bento-chip" style={{ borderColor: `${project.color}40`, color: project.accent }}>{t}</span>
+          ))}
+        </div>
+
+        <button className="case-cta" onClick={onClick}>
+          <span className="case-cta-text">View Project</span>
+          <span className="case-cta-icon"><ArrowRight size={15} /></span>
+        </button>
+      </div>
+    </motion.article>
+  );
+}
+
+const INITIAL_COUNT = 3;
+
 export default function Projects() {
-  const [active,  setActive]  = useState(null);
-  const [current, setCurrent] = useState(0);
-  const [dir,     setDir]     = useState(1);
-  const n = PROJECTS.length;
+  const [active, setActive] = useState(null);
+  const [expanded, setExpanded] = useState(false);
+  const viewMoreRef = useRef(null);
 
-  const go = (idx) => {
-    setDir(idx > current ? 1 : -1);
-    setCurrent((idx + n) % n);
-  };
-  const prev = () => go(current - 1);
-  const next = () => go(current + 1);
+  const openProject = (project) => setActive(project);
+  const closeProject = () => setActive(null);
 
-  const leftIdx  = (current - 1 + n) % n;
-  const rightIdx = (current + 1) % n;
-  const featured = PROJECTS[current];
-  const leftP    = PROJECTS[leftIdx];
-  const rightP   = PROJECTS[rightIdx];
+  const filtered = PROJECTS;
 
-  const slideVariants = {
-    enter: (d) => ({ opacity: 0, x: d > 0 ? 60 : -60, scale: 0.94 }),
-    center:      { opacity: 1, x: 0,                  scale: 1    },
-    exit:  (d) => ({ opacity: 0, x: d > 0 ? -60 : 60, scale: 0.94 }),
+  const visible = expanded ? filtered : filtered.slice(0, INITIAL_COUNT);
+
+  const toggleExpanded = () => {
+    if (expanded) {
+      // Animating the scroll and the row-collapse at the same time makes
+      // both look janky since they fight for the same frames. Instead,
+      // snap the viewport to the toggle instantly (no animation to race),
+      // then let the row collapse animate smoothly on its own.
+      const el = viewMoreRef.current;
+      if (el) {
+        const targetY = el.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2 + el.offsetHeight / 2;
+        window.scrollTo({ top: targetY, behavior: 'instant' });
+      }
+      setExpanded(false);
+    } else {
+      setExpanded(true);
+    }
   };
-  const sideVariants = {
-    enter: (d) => ({ opacity: 0, x: d > 0 ? 30 : -30 }),
-    center:      { opacity: 0.5, x: 0 },
-    exit:  (d) => ({ opacity: 0, x: d > 0 ? -30 : 30 }),
-  };
-  const ease = [0.32, 0.72, 0, 1];
+  const hasMore = filtered.length > visible.length;
 
   return (
     <>
@@ -425,124 +435,73 @@ export default function Projects() {
 
           <div className="proj-header-row">
             <div>
-              <h2 className="proj-main-heading">Featured Projects</h2>
-              <p className="proj-main-sub">
-                A selection of projects I have built across web, mobile and desktop.
-                Each one was designed and developed by me from start to finish.
-              </p>
+              <h2 className="proj-main-heading proj-main-heading-lg">
+                Things I've built<br />along the way.
+              </h2>
             </div>
-            <div className="proj-carousel-controls">
-              <button className="proj-ctrl" onClick={prev} aria-label="Previous"><ChevronLeft size={18} /></button>
-              <span className="proj-ctrl-count">{String(current + 1).padStart(2,'0')} / {String(n).padStart(2,'0')}</span>
-              <button className="proj-ctrl" onClick={next} aria-label="Next"><ChevronRight size={18} /></button>
-            </div>
+            <p className="proj-main-sub proj-main-sub-right">
+              A look at what I've shipped, from capstone systems to
+              hackathon sprints. Each one taught me something different.
+            </p>
           </div>
 
-          <div className="proj-carousel">
-
-            {/* left */}
-            <AnimatePresence mode="popLayout" custom={dir}>
-              <motion.div
-                key={`l-${leftIdx}`}
-                className="proj-card proj-card-side"
-                custom={dir}
-                variants={sideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.38, ease }}
-                onClick={prev}
-              >
-                <div className="proj-card-img-wrap">
-                  <CardVisual project={leftP} />
-                </div>
-                <div className="proj-card-body">
-                  <p className="proj-card-num" style={{ color: leftP.accent }}>{leftP.num}</p>
-                  <p className="proj-card-name">{leftP.name}</p>
-                </div>
-              </motion.div>
+          {/* case study rows */}
+          <motion.div className="case-list" layout>
+            <AnimatePresence initial={false} mode="popLayout">
+              {visible.map((p, i) => (
+                <CaseStudyRow
+                  key={p.num}
+                  project={p}
+                  index={i}
+                  reverse={i % 2 === 1}
+                  onClick={() => openProject(p)}
+                />
+              ))}
             </AnimatePresence>
+          </motion.div>
 
-            {/* featured center */}
-            <AnimatePresence mode="popLayout" custom={dir}>
-              <motion.div
-                key={`c-${current}`}
-                className="proj-card proj-card-featured"
-                custom={dir}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.42, ease }}
-                style={{ borderColor: `${featured.color}45` }}
-                onClick={() => setActive(featured)}
-              >
-                <div className="proj-card-img-wrap proj-card-img-wrap-featured">
-                  <CardVisual project={featured} />
-                  <span className="proj-card-featured-badge" style={{ background: featured.color }}>Featured</span>
-                </div>
-                <div className="proj-card-body proj-card-body-featured">
-                  <div>
-                    <p className="proj-card-num" style={{ color: featured.accent }}>{featured.num}</p>
-                    <p className="proj-card-name proj-card-name-featured">{featured.name}</p>
-                    <p className="proj-card-tag">{featured.tag}</p>
-                    <p className="proj-card-short">{featured.short}</p>
-                  </div>
-                  <div className="proj-card-footer">
-                    <div className="proj-card-stack">
-                      {featured.stack.map(t => (
-                        <span key={t} className="proj-card-chip" style={{ borderColor: `${featured.color}45`, color: featured.accent }}>{t}</span>
-                      ))}
-                    </div>
-                    <span className="proj-card-cta">View Project <ArrowRight size={13} /></span>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* right */}
-            <AnimatePresence mode="popLayout" custom={dir}>
-              <motion.div
-                key={`r-${rightIdx}`}
-                className="proj-card proj-card-side"
-                custom={dir}
-                variants={sideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.38, ease }}
-                onClick={next}
-              >
-                <div className="proj-card-img-wrap">
-                  <CardVisual project={rightP} />
-                </div>
-                <div className="proj-card-body">
-                  <p className="proj-card-num" style={{ color: rightP.accent }}>{rightP.num}</p>
-                  <p className="proj-card-name">{rightP.name}</p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-          </div>
-
-          {/* dots */}
-          <div className="proj-dots">
-            {PROJECTS.map((p, i) => (
-              <button
-                key={i}
-                className={`proj-dot${i === current ? ' active' : ''}`}
-                onClick={() => go(i)}
-                style={i === current ? { background: featured.color } : {}}
-                aria-label={p.name}
-              />
-            ))}
-          </div>
+          {filtered.length > INITIAL_COUNT && (
+            <button
+              ref={viewMoreRef}
+              className={`case-view-more${expanded ? ' case-view-less' : ''}`}
+              onClick={toggleExpanded}
+            >
+              <AnimatePresence mode="wait" initial={false}>
+                {expanded ? (
+                  <motion.span
+                    key="less"
+                    className="case-view-more-inner"
+                    initial={{ opacity: 0, y: -6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 6 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    Show fewer projects
+                    <ArrowRight size={15} className="case-view-less-icon" />
+                  </motion.span>
+                ) : (
+                  <motion.span
+                    key="more"
+                    className="case-view-more-inner"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.18 }}
+                  >
+                    View more projects
+                    <span className="case-view-more-count">{filtered.length - visible.length}</span>
+                    <ArrowRight size={15} />
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </button>
+          )}
 
         </div>
       </section>
 
       <AnimatePresence>
-        {active && <ProjectDrawer project={active} onClose={() => setActive(null)} />}
+        {active && <ProjectDrawer project={active} onClose={closeProject} />}
       </AnimatePresence>
     </>
   );

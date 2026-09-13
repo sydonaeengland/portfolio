@@ -22,7 +22,7 @@ function HeroCard({ project }) {
         border: '1px solid var(--color-border)',
         borderRadius: 'var(--radius-md)',
         overflow: 'hidden',
-        cursor: 'none',
+        cursor: 'pointer',
         transition: 'border-color 0.3s ease, box-shadow 0.3s ease',
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
@@ -40,7 +40,7 @@ function HeroCard({ project }) {
       role="button"
       tabIndex={0}
       onKeyDown={e => e.key === 'Enter' && navigate(`/projects/${project.id}`)}
-      aria-label={`View ${project.name} — ${project.subtitle}`}
+      aria-label={`View ${project.name}: ${project.subtitle}`}
     >
       {/* Left — content */}
       <div style={{
@@ -155,7 +155,7 @@ function HeroCard({ project }) {
         <img
           src={project.image}
           alt={`${project.name} screenshot`}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85 }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '16px', opacity: 0.9 }}
           onError={e => {
             e.target.style.display = 'none';
             e.target.nextSibling.style.display = 'flex';
@@ -193,7 +193,7 @@ function GridCard({ project }) {
         border: '1px solid var(--color-border)',
         borderRadius: 'var(--radius-md)',
         overflow: 'hidden',
-        cursor: 'none',
+        cursor: 'pointer',
         transition: 'border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease',
         display: 'flex',
         flexDirection: 'column',
@@ -222,7 +222,7 @@ function GridCard({ project }) {
         <img
           src={project.image}
           alt={`${project.name} screenshot`}
-          style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }}
+          style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px', opacity: 0.85 }}
           onError={e => { e.target.style.display = 'none'; e.target.nextSibling.style.display = 'flex'; }}
         />
         <div style={{
@@ -313,7 +313,7 @@ export default function ProjectsPage() {
   const [hero, ...rest] = PROJECTS;
 
   return (
-    <div style={{ minHeight: '100vh', background: 'var(--color-bg)', paddingTop: '96px' }}>
+    <div id="main-content" style={{ minHeight: '100vh', background: 'var(--color-bg)', paddingTop: '96px' }}>
       <div className="max-w-7xl mx-auto px-6 py-16">
 
         {/* Back */}
